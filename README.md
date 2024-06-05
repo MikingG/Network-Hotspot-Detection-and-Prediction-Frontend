@@ -21,14 +21,14 @@ English | [简体中文](./README-zh.md)
 ## Build Setup
 
 ```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
-
-# enter the project directory
-cd vue-admin-template
 
 # install dependency
 npm install
+
+# 如果 npm install 没能成功，可以先把以下两个文件夹/文件先删掉
+node_modules
+package-lock.json
+
 
 # develop
 npm run dev
