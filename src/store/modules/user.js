@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, register, validateEmail } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -41,6 +41,28 @@ const actions = {
         resolve()
       }).catch(error => {
         reject(error)
+      })
+    })
+  },
+
+  // user register
+  register(context, { stunumber, password, email, valicode }) {
+    return new Promise((resolve, reject) => {
+      register({ stunumber, password, email, valicode }).then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+  },
+
+  validateEmail(context, { email }) {
+    console.error(email)
+    return new Promise((resolve, reject) => {
+      validateEmail({ email }).then((res) => {
+        resolve(res)
+      }).catch((err) => {
+        reject(err)
       })
     })
   },

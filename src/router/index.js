@@ -31,136 +31,117 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [{
-        path: '/login',
-        component: () =>
-            import ('@/views/login/index'),
-        hidden: true
-    },
+  path: '/login',
+  component: () =>
+    import ('@/views/login/index'),
+  hidden: true
+},
 
-    {
-        path: '/404',
-        component: () =>
-            import ('@/views/404'),
-        hidden: true
-    },
+{
+  path: '/register',
+  component: () =>
+    import ('@/views/register/index')
+},
 
-    {
-        path: '/',
-        component: Layout,
-        redirect: '/dashboard',
-        children: [{
-            path: 'dashboard',
-            name: 'Dashboard',
-            component: () =>
-                import ('@/views/dashboard/index'),
-            meta: { title: '社团列表', icon: 'dashboard' }
-        }]
-    },
+{
+    path: '/404',
+    component: () =>
+         import ('@/views/404'),
+    hidden: true
+},
 
-    {
-        path: '/',
-        component: Layout,
-        redirect: '/application',
-        children: [{
-            path: 'application/:groupname',
-            name: 'Application',
-            component: () =>
-                import ('@/views/application/index'),
-        }]
-    },
+{
+  path: '/',
+  component: Layout,
+  redirect: '/dashboard',
+  children: [{
+    path: 'dashboard',
+    name: 'Dashboard',
+    component: () =>
+      import ('@/views/dashboard/index'),
+    meta: { title: '招新首页', icon: 'dashboard' }
+  }]
+},
 
-    {
-        path: '/myapplication',
-        component: Layout,
-        redirect: '/myapplication',
-        children: [{
-            path: 'myapplication',
-            name: 'Myapplication',
-            component: () =>
-                import ('@/views/myapplication/index'),
-            meta: { title: '我的申请', icon: 'table' }
-        }]
-    },
+{
+  path: '/',
+  component: Layout,
+  redirect: '/application',
+  children: [{
+    path: 'application/:groupname',
+    name: 'Application',
+    component: () =>
+      import ('@/views/application/index')
+  }]
+},
 
-    {
-        path: '/profile',
-        component: Layout,
-        redirect: '/profile',
-        children: [{
-            path: 'profile',
-            name: 'Profile',
-            component: () =>
-                import ('@/views/profile/index'),
-            meta: { title: '个人信息', icon: 'el-icon-s-custom' }
-        }]
-    },
+{
+  path: '/',
+  component: Layout,
+  redirect: '/showgroupdetails',
+  children: [{
+    path: 'showgroupdetails/:groupid',
+    name: 'Showgroupdetails',
+    component: () =>
+      import ('@/views/showgroupdetails/index')
+  }]
+},
 
-    {
-        path: '/brand',
-        component: Layout,
-        redirect: '/brand/list',
-        name: 'Example',
-        meta: { title: '品牌管理', icon: 'el-icon-s-help' },
-        children: [{
-                path: 'list',
-                name: 'list',
-                component: () =>
-                    import ('@/views/brand/index'),
-                meta: { title: '品牌列表', icon: 'table' }
-            },
-            {
-                path: 'add',
-                name: 'add',
-                component: () =>
-                    import ('@/views/brand/add'),
-                meta: { title: '添加品牌', icon: 'tree' }
-            },
-            // 此路由用于编辑品牌信息，:id用于接收需要被修改的品牌id
-            {
-                // /brand/edit/123
-                path: 'edit/:id',
-                name: 'edit',
-                // 此路由不需要在页面上显示
-                hidden: true,
-                component: () =>
-                    import ('@/views/brand/add'),
-                meta: { title: '编辑品牌', icon: 'tree' }
-            }
-        ]
-    },
-    {
-        path: '/category',
-        component: Layout,
-        redirect: '/category/list',
-        name: 'category',
-        meta: { title: '分类管理', icon: 'el-icon-s-help' },
-        children: [{
-            path: 'list',
-            name: 'category',
-            component: () =>
-                import ('@/views/category/index'),
-            meta: { title: '分类列表', icon: 'table' }
-        }]
-    },
+{
+  path: '/myapplication',
+  component: Layout,
+  redirect: '/myapplication',
+  children: [{
+    path: 'myapplication',
+    name: 'Myapplication',
+    component: () =>
+      import ('@/views/myapplication/index'),
+    meta: { title: '我的申请', icon: 'table' }
+  }]
+},
 
+{
+  path: '/top',
+  component: Layout,
+  redirect: '/top',
+  children: [{
+    path: 'top',
+    name: 'Top',
+    component: () =>
+      import ('@/views/top/index'),
+    meta: { title: '最火社团', icon: 'form' }
+  }]
+},
 
+{
+  path: '/profile',
+  component: Layout,
+  redirect: '/profile',
+  children: [{
+    path: 'profile',
+    name: 'Profile',
+    component: () =>
+      import ('@/views/profile/index'),
+    meta: { title: '个人信息', icon: 'el-icon-s-custom' }
+  }]
+},
 
-    // 404 page must be placed at the end !!!
-    { path: '*', redirect: '/404', hidden: true }
+// 404 page must be placed at the end !!!
+{ path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
 }
 
 export default router
