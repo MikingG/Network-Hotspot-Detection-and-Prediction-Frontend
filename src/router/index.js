@@ -88,15 +88,15 @@ export const constantRoutes = [{
 },
 
 {
-  path: '/myapplication',
+  path: '/basicAnalysis',
   component: Layout,
-  redirect: '/myapplication',
+  redirect: '/basicAnalysis',
   children: [{
-    path: 'myapplication',
-    name: 'Myapplication',
+    path: 'basicAnalysis',
+    name: 'BasicAnalysis',
     component: () =>
-      import ('@/views/myapplication/index'),
-    meta: { title: '我的申请', icon: 'table' }
+      import ('@/views/basicAnalysis/index'),
+    meta: { title: '数据基本分析', icon: 'table' }
   }]
 },
 

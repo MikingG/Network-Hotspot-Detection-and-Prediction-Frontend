@@ -16,6 +16,8 @@
   "dependencies": {
     "axios": "^0.21.4",
     "core-js": "3.6.5",
+    "echarts": "^5.5.0",
+    "echarts-wordcloud": "^2.1.0",
     "element-ui": "2.13.2",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",

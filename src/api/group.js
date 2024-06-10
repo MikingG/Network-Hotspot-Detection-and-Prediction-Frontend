@@ -33,12 +33,29 @@ export function getTopGroups() {
   })
 }
 
-export function getApplications(stunumber) {
+export function getCategory() {
   return request({
-    url: '/application/myapps',
-    method: 'post',
-    params: { stunumber }
-  })
+    url: '/user/getCategory/',
+    method: 'get',
+    params: {}
+  });
+}
+
+export function getWordFrequency() {
+  return request({
+    url: '/user/getWordFrequency/',
+    method: 'get',
+    params: {}
+  });
+}
+
+
+export function getHotspots() {
+  return request({
+    url: '/user/getHotspots/',
+    method: 'get',
+    params: { }
+  });
 }
 
 export function postform(form) {
