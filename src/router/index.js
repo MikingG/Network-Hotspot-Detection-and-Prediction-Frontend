@@ -44,10 +44,10 @@ export const constantRoutes = [{
 },
 
 {
-    path: '/404',
-    component: () =>
-         import ('@/views/404'),
-    hidden: true
+  path: '/404',
+  component: () =>
+    import ('@/views/404'),
+  hidden: true
 },
 
 {
@@ -101,15 +101,15 @@ export const constantRoutes = [{
 },
 
 {
-  path: '/top',
+  path: '/crawl',
   component: Layout,
-  redirect: '/top',
+  redirect: '/crawl',
   children: [{
-    path: 'top',
-    name: 'Top',
+    path: 'crawl',
+    name: 'Crawl',
     component: () =>
-      import ('@/views/top/index'),
-    meta: { title: '最火社团', icon: 'form' }
+      import ('@/views/crawl/index'),
+    meta: { title: '爬虫信息', icon: 'form' }
   }]
 },
 
