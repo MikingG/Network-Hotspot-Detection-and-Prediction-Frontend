@@ -19,26 +19,26 @@ export function register(data) {
 
 export function modifypassword(stunumber, password) {
   return request({
-      url: '/user/modifypass',
-      method: 'post',
-      params: { stunumber, password }
+    url: '/user/modifypass',
+    method: 'post',
+    params: { stunumber, password }
   })
 }
 
 export function modifyphone(stunumber, phone) {
   return request({
-      url: '/user/modifyphone',
-      method: 'post',
-      params: { stunumber, phone }
+    url: '/user/modifyphone',
+    method: 'post',
+    params: { stunumber, phone }
   })
 }
 
 export function validateEmail(email) {
   console.error({ email })
   return request({
-      url: '/user/validateEmail',
-      method: 'post',
-      params: { email }
+    url: '/user/validateEmail',
+    method: 'post',
+    params: { email }
   })
 }
 
@@ -49,7 +49,6 @@ export function getProfile(stunumber) {
     params: { stunumber }
   })
 }
-
 
 export function getInfo(token) {
   return request({
@@ -63,5 +62,13 @@ export function logout() {
   return request({
     url: '/user/logout/',
     method: 'post'
+  })
+}
+
+export function getBriefInfo() {
+  console.log('!!!')
+  return request({
+    url: '/crawl/brief/',
+    method: 'get'
   })
 }
