@@ -12,6 +12,9 @@
       <el-col v-for="group in groups" :key="group.id" :span="8" :offset="0">
         <el-card class="group-card" :body-style="{ padding: '20px', height: '200px' }">
           <div class="group-content">
+            <div class="image-container">
+              <img :src="imageGetUrl(group.name)" class="small-image">
+            </div>
             <div class="group-details">
               <div class="group-name">{{ group.name }}</div>
             </div>
@@ -72,6 +75,9 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+    imageGetUrl(name) {
+      return `/${name}.jpg`
     },
     momentDate(datetime) {
       var date = new Date(datetime)
@@ -159,5 +165,19 @@ export default {
     font-weight: bold;
     text-align: center;
     margin-bottom: 3px;
+  }
+
+  .image-container {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .small-image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
   }
 </style>
