@@ -126,6 +126,19 @@ export const constantRoutes = [{
   }]
 },
 
+{
+  path: '/graph',
+  component: Layout,
+  redirect: '/graph',
+  children: [{
+    path: 'graph',
+    name: 'graph',
+    component: () =>
+      import ('@/views/graph/index'),
+    meta: { title: '图谱', icon: 'tree' }
+  }]
+},
+
 // 404 page must be placed at the end !!!
 { path: '*', redirect: '/404', hidden: true }
 ]
