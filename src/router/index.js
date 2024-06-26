@@ -114,6 +114,19 @@ export const constantRoutes = [{
 },
 
 {
+  path: '/trendPrediction',
+  component: Layout,
+  redirect: '/trendPrediction',
+  children: [{
+    path: 'trendPrediction',
+    name: 'TrendPrediction',
+    component: () =>
+      import ('@/views/trendPrediction/index'),
+    meta: { title: '短视频热点预测', icon: 'el-icon-s-marketing' }
+  }]
+},
+
+{
   path: '/crawlDetail',
   component: Layout,
   redirect: '/crawlDetail',
