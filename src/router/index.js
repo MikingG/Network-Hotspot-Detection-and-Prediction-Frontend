@@ -114,15 +114,15 @@ export const constantRoutes = [{
 },
 
 {
-  path: '/profile',
+  path: '/trendPrediction',
   component: Layout,
-  redirect: '/profile',
+  redirect: '/trendPrediction',
   children: [{
-    path: 'profile',
-    name: 'Profile',
+    path: 'trendPrediction',
+    name: 'TrendPrediction',
     component: () =>
-      import ('@/views/profile/index'),
-    meta: { title: '个人信息', icon: 'el-icon-s-custom' }
+      import ('@/views/trendPrediction/index'),
+    meta: { title: '短视频热点预测', icon: 'el-icon-s-marketing' }
   }]
 },
 

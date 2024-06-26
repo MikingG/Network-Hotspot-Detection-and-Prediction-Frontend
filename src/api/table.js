@@ -7,3 +7,20 @@ export function getList(params) {
     params
   })
 }
+
+export function getTrendWordFrequency() {
+  return request({
+    url: '/user/getTrendWordFrequency/',
+    method: 'get',
+    params: {}
+  });
+}
+
+
+export function getTrendHotspots() {
+  return request({
+    url: '/user/getTrendHotspots/',
+    method: 'get',
+    params: {}
+  });
+}
