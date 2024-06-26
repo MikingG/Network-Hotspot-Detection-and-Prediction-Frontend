@@ -114,6 +114,18 @@ export const constantRoutes = [{
 },
 
 {
+  path: '/crawlDetail',
+  component: Layout,
+  redirect: '/crawlDetail',
+  children: [{
+    path: 'crawlDetail/:name',
+    name: 'crawlDetail',
+    component: () =>
+      import ('@/views/crawlDetail/index')
+  }]
+},
+
+{
   path: '/profile',
   component: Layout,
   redirect: '/profile',
