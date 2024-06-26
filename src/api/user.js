@@ -72,3 +72,13 @@ export function getBriefInfo() {
     method: 'get'
   })
 }
+
+export function getDetailInfo(source) {
+  return request({
+    url: '/crawl/detail/',
+    method: 'get',
+    params: {
+      source: source
+    }
+  })
+}

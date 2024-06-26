@@ -127,6 +127,19 @@ export const constantRoutes = [{
 },
 
 {
+  path: '/profile',
+  component: Layout,
+  redirect: '/profile',
+  children: [{
+    path: 'profile',
+    name: 'Profile',
+    component: () =>
+      import ('@/views/profile/index'),
+    meta: { title: '个人信息', icon: 'el-icon-s-custom' }
+  }]
+},
+
+{
   path: '/graph',
   component: Layout,
   redirect: '/graph',
@@ -136,6 +149,18 @@ export const constantRoutes = [{
     component: () =>
       import ('@/views/graph/index'),
     meta: { title: '图谱', icon: 'tree' }
+  }]
+},
+
+{
+  path: '/crawlDetail',
+  component: Layout,
+  redirect: '/crawlDetail',
+  children: [{
+    path: 'crawlDetail/:name',
+    name: 'crawlDetail',
+    component: () =>
+      import ('@/views/crawlDetail/index')
   }]
 },
 
