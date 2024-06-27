@@ -59,7 +59,7 @@ export const constantRoutes = [{
     name: 'Dashboard',
     component: () =>
       import ('@/views/dashboard/index'),
-    meta: { title: '招新首页', icon: 'dashboard' }
+    meta: { title: '管理用户', icon: 'dashboard',requiresStaff:1 }
   }]
 },
 
@@ -96,7 +96,7 @@ export const constantRoutes = [{
     name: 'BasicAnalysis',
     component: () =>
       import ('@/views/basicAnalysis/index'),
-    meta: { title: '数据基本分析', icon: 'table' }
+    meta: { title: '数据基本分析', icon: 'table',requiresStaff:0 }
   }]
 },
 
@@ -109,7 +109,7 @@ export const constantRoutes = [{
     name: 'Crawl',
     component: () =>
       import ('@/views/crawl/index'),
-    meta: { title: '爬虫信息', icon: 'form' }
+    meta: { title: '爬虫信息', icon: 'form',requiresStaff:0 }
   }]
 },
 
@@ -122,7 +122,7 @@ export const constantRoutes = [{
     name: 'Profile',
     component: () =>
       import ('@/views/profile/index'),
-    meta: { title: '个人信息', icon: 'el-icon-s-custom' }
+    meta: { title: '个人信息', icon: 'el-icon-s-custom',requiresStaff:0 }
   }]
 },
 
@@ -135,7 +135,7 @@ export const constantRoutes = [{
     name: 'graph',
     component: () =>
       import ('@/views/graph/index'),
-    meta: { title: '图谱', icon: 'tree' }
+    meta: { title: '图谱', icon: 'tree',requiresStaff:0 }
   }]
 },
 

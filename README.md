@@ -1,3 +1,11 @@
+# Quick Start in MacOS
+Three steps
+```
+brew install node
+npm install
+npm run dev
+```
+
 # vue-admin-template
 
 English | [简体中文](./README-zh.md)
