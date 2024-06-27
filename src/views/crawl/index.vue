@@ -26,7 +26,7 @@
             </div>
 
             <div class="group-details">
-              <button class="group-button">查询具体信息</button>
+              <button class="group-button" @click="showDetailInfo(group.name)">查询具体信息</button>
             </div>
           </div>
         </el-card>
@@ -83,19 +83,12 @@ export default {
       var date = new Date(datetime)
       return date.toLocaleString()
     },
-    redirectToApplication(groupname) {
+    showDetailInfo(name) {
       this.$router.push({
-        name: 'Application',
+        path: `/crawlDetail/${name}`, // 使用新的路由路径
+        name: 'crawlDetail', // 使用新的路由名称
         params: {
-          groupname: groupname
-        }
-      })
-    },
-    redirectToShowgroupdetails(groupid) {
-      this.$router.push({
-        name: 'Showgroupdetails',
-        params: {
-          groupid: groupid
+          name: name // 保持参数传递
         }
       })
     }
