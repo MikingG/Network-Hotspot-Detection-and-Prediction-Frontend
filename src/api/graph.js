@@ -5,10 +5,11 @@ import request from '@/utils/request'
 //   return axios.get('http://127.0.0.1:5000/geteventlist')
 // }
 
-export function getEventList() {
+export function getEventList(kind) {
   return request({
     url: '/user/geteventlist/',
-    method: 'get'
+    method: 'get',
+    params: { kind }
   })
 }
 

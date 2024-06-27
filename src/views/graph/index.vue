@@ -1,9 +1,17 @@
 <template>
   <div>
+    <el-select v-model="querykind" placeholder="请选择" @change="handleChange">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
     <el-autocomplete
       v-model="state"
       :fetch-suggestions="querySearchAsync"
-      placeholder="请输入要查询的事件"
+      placeholder="请输入要查询的事件或实体"
       class="my-autocomplete"
       @select="handleSelect"
     />
@@ -21,6 +29,14 @@ import { getEventList } from '@/api/graph'
 export default {
   data() {
     return {
+      options: [{
+        value: 'event',
+        label: '事件'
+      }, {
+        value: 'entity',
+        label: '实体'
+      }],
+      querykind: 'event',
       graphurl: 'http://localhost:8080/#/Workbench/Cypher',
       selectevent: '',
       eventname: '法国总统马克龙访问中山大学',
@@ -33,11 +49,11 @@ export default {
   computed: {
     getUrl() {
       console.log(this.eventname)
-      return this.graphurl + '?name=' + this.eventname
+      return this.graphurl + '?name=' + this.eventname + '&kind=' + this.querykind
     }
   },
   created() {
-    getEventList().then(res => {
+    getEventList(this.querykind).then(res => {
       var ret = []
       for (let i = 0; i < res.data.length; i++) {
         ret.push(({ 'value': res.data[i] }))
@@ -76,6 +92,19 @@ export default {
       setTimeout(() => {
         this.showgraph = true
       }, 100)
+    },
+    handleChange(value) {
+      getEventList(value).then(res => {
+        var ret = []
+        for (let i = 0; i < res.data.length; i++) {
+          ret.push(({ 'value': res.data[i] }))
+        }
+        console.log(ret)
+        this.eventlist = ret
+      }).catch(err => {
+        console.log(err)
+        this.eventlist = []
+      })
     }
   }
 }
