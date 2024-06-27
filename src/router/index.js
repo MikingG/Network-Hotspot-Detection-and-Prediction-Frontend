@@ -51,7 +51,7 @@ export const constantRoutes = [{
 },
 
 {
-  path: '/',
+  path: '/dashboard',
   component: Layout,
   redirect: '/dashboard',
   children: [{
@@ -65,30 +65,6 @@ export const constantRoutes = [{
 
 {
   path: '/',
-  component: Layout,
-  redirect: '/application',
-  children: [{
-    path: 'application/:groupname',
-    name: 'Application',
-    component: () =>
-      import ('@/views/application/index')
-  }]
-},
-
-{
-  path: '/',
-  component: Layout,
-  redirect: '/showgroupdetails',
-  children: [{
-    path: 'showgroupdetails/:groupid',
-    name: 'Showgroupdetails',
-    component: () =>
-      import ('@/views/showgroupdetails/index')
-  }]
-},
-
-{
-  path: '/basicAnalysis',
   component: Layout,
   redirect: '/basicAnalysis',
   children: [{
