@@ -2,7 +2,7 @@
   <div class="navbar">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-    <breadcrumb class="breadcrumb-container" />
+    <!-- ÷<breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
@@ -38,7 +38,7 @@ import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    Breadcrumb,
+    //Breadcrumb,
     Hamburger
   },
   computed: {
