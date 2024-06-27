@@ -114,6 +114,19 @@ export const constantRoutes = [{
 },
 
 {
+  path: '/trendPrediction',
+  component: Layout,
+  redirect: '/trendPrediction',
+  children: [{
+    path: 'trendPrediction',
+    name: 'TrendPrediction',
+    component: () =>
+      import ('@/views/trendPrediction/index'),
+    meta: { title: '短视频热点预测', icon: 'el-icon-s-marketing' }
+  }]
+},
+
+{
   path: '/profile',
   component: Layout,
   redirect: '/profile',
@@ -136,6 +149,18 @@ export const constantRoutes = [{
     component: () =>
       import ('@/views/graph/index'),
     meta: { title: '图谱', icon: 'tree' }
+  }]
+},
+
+{
+  path: '/crawlDetail',
+  component: Layout,
+  redirect: '/crawlDetail',
+  children: [{
+    path: 'crawlDetail/:name',
+    name: 'crawlDetail',
+    component: () =>
+      import ('@/views/crawlDetail/index')
   }]
 },
 
