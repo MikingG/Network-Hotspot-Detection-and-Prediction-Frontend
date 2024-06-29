@@ -24,3 +24,11 @@ export function getTrendHotspots() {
     params: {}
   });
 }
+
+export function getTrendRanking() {
+  return request({
+    url: '/user/getTrendRanking/',
+    method: 'get',
+    params: {}
+  });
+}
