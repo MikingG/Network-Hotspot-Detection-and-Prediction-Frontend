@@ -22,24 +22,58 @@
           <a target="_blank" href="https://sse.sysu.edu.cn/">
             <el-dropdown-item>软件工程学院首页</el-dropdown-item>
           </a>
+          <el-dropdown-item @click.native="dialogVisible = true">
+            修改密码
+          </el-dropdown-item>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <!-- 修改密码对话框 -->
+    <el-dialog :visible.sync="dialogVisible" title="修改密码">
+      <el-form :model="form">
+        <el-form-item label="旧密码">
+          <el-input v-model="form.oldPassword" type="password" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="新密码">
+          <el-input v-model="form.newPassword" type="password" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="确认新密码">
+          <el-input v-model="form.confirmNewPassword" type="password" autocomplete="off" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="submitForm">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
+import { modifypassword } from '@/api/user'
+// import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    //Breadcrumb,
+    // Breadcrumb,
     Hamburger
+  },
+  data() {
+    return {
+      dialogVisible: false,
+      form: {
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+      }
+    }
   },
   computed: {
     ...mapGetters([
@@ -54,6 +88,28 @@ export default {
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    submitForm() {
+      // 在这里处理表单提交逻辑，例如验证密码、调用API等
+      if (this.form.newPassword !== this.form.confirmNewPassword) {
+        this.$message.error('新密码和确认新密码不一致')
+        return
+      }
+      modifypassword(this.form).then(response => {
+        this.$message({
+          message: '修改密码成功',
+          type: 'success'
+        })
+        // 清除表单数据
+        this.form.oldPassword = ''
+        this.form.newPassword = ''
+        this.form.confirmNewPassword = ''
+        console.log('修改密码成功', response)
+        // 关闭对话框
+        this.dialogVisible = false
+      }).catch(error => {
+        console.error('修改密码失败', error)
+      })
     }
   }
 }

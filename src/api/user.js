@@ -17,21 +17,23 @@ export function register(data) {
   })
 }
 
-export function modifypassword(stunumber, password) {
+export function modifypassword(data) {
   return request({
-    url: '/user/modifypass',
+    // 这又出现了一个世界未解之谜，这里的url为什么不能是/user/modifyPassword?
+    // 不加/就会报错
+    url: '/user/modifyPassword/',
     method: 'post',
-    params: { stunumber, password }
+    data: data
   })
 }
 
-export function modifyphone(stunumber, phone) {
-  return request({
-    url: '/user/modifyphone',
-    method: 'post',
-    params: { stunumber, phone }
-  })
-}
+// export function modifyphone(stunumber, phone) {
+//   return request({
+//     url: '/user/modifyphone',
+//     method: 'post',
+//     params: { stunumber, phone }
+//   })
+// }
 
 export function validateEmail(email) {
   console.error({ email })
