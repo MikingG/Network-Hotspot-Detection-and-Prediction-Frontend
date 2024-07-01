@@ -10,6 +10,32 @@
         <div id="wordCloudChart" style="width: 100%; height: 500px;" />
       </el-card>
     </el-col>
+    <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+      <div class="table-title">短视频趋势预测</div>
+      <el-table
+        :data="tableData"
+        height="1000px"
+        style="width: 100%"
+        stripe
+        border
+      >
+        <el-table-column
+          prop="rank"
+          label="排名"
+          width="100"
+          align="center"
+        />
+        <el-table-column
+          prop="title"
+          label="标题"
+          class-name="right-aligned-title"
+        />
+        <!-- <el-table-column
+                    prop="topic"
+                    label="类别"
+                /> -->
+      </el-table>
+    </el-col>
   </div>
 </template>
 
@@ -17,7 +43,7 @@
 
 import * as echarts from 'echarts'
 import { mapGetters } from 'vuex'
-import { getTrendWordFrequency, getTrendHotspots } from '@/api/table.js'
+import { getTrendWordFrequency, getTrendHotspots, getTrendRanking } from '@/api/table.js'
 
 export default {
   name: 'TrendPrediction',
@@ -67,6 +93,19 @@ export default {
 
         // Initialize the word cloud chart with the fetched data
         this.initWordCloudChart(wordCloudDataset)
+
+        // Fetch data for table
+        const rankResponse = await getTrendRanking()
+        const fetchRankingData = rankResponse.data.sort((a, b) => b.trending_probability - a.trending_probability)
+
+        // Process data for table, adding rank
+        const processedData = fetchRankingData.map((item, index) => ({
+          rank: index + 1,
+          title: item.name,
+          topic: item.type
+        }))
+
+        this.tableData = processedData
       } catch (error) {
         console.error('Failed to fetch data:', error)
       }
@@ -134,9 +173,9 @@ export default {
             datasetIndex: 1, // Use the transformed dataset
             itemStyle: {
               color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#ff7f7f' }, // 浅红色
-                { offset: 0.5, color: '#ff4c4c' }, // 中间红色
-                { offset: 1, color: '#ff1a1a' } // 深红色
+                { offset: 0, color: '#87CEFA' }, // 浅蓝色
+                { offset: 0.5, color: '#00BFFF' }, // 中间蓝色
+                { offset: 1, color: '#4682B4' } // 深蓝色
               ])
             },
             emphasis: {
@@ -169,6 +208,11 @@ export default {
       option && myChart.setOption(option)
     },
 
+    // 辅助函数：生成随机颜色
+    randomColor() {
+      return '#' + Math.floor(Math.random() * 16777215).toString(16)
+    },
+
     initWordCloudChart(dataset) {
       // 获取词云图表的 DOM 元素
       const wordCloudChartDom = document.getElementById('wordCloudChart')
@@ -189,10 +233,10 @@ export default {
           shape: 'circle', // 词云形状
           textStyle: {
             normal: {
-              color: '#00FF00' // 直接指定颜色为蓝色
+              olor: this.randomColor // 为每个单词应用随机颜色
             }
           },
-          data: dataset
+          data: dataset.map(item => ({ ...item, textStyle: { color: this.randomColor() }}))
         }]
       }
       // 使用指定的配置设置词云图表选项
@@ -201,23 +245,30 @@ export default {
   },
   data() {
     return {
-      tableData: [], // 表格数据
-      modalVisible: false,
-      modalTitle: '',
-      modalContent: {
-        line1: '',
-        line2: ''
-      },
-      // Your provided data
-      hotspotsData: [
-        // ...your data here, same as you provided
-      ]
+      tableData: [] // 表格数据
     }
   }
 }
 
 </script>
 
-<style scoped>
+<style>
+
+.table-title {
+    margin-top: 20px;
+    padding-left: 30px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.right-aligned-title .cell {
+    padding-left: 40px; /* 根据需要调整数值，控制文本右移的距离 */
+}
+
+.el-table .el-table__header th.right-aligned-title .cell {
+    text-align: center; /* 使表头文本居中 */
+}
 
 </style>
