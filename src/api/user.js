@@ -66,7 +66,7 @@ export function logout() {
 }
 
 export function getBriefInfo() {
-  console.log('!!!')
+  // console.log('!!!')
   return request({
     url: '/crawl/brief/',
     method: 'get'
@@ -80,5 +80,45 @@ export function getDetailInfo(source) {
     params: {
       source: source
     }
+  })
+}
+
+export function getAllUser(){
+  return request({
+    url: '/user/getAllUser/',
+    method: 'get'
+  })
+}
+
+export function deleteUser(data)
+{
+  return request({
+    url: '/user/deleteUser/',
+    method: 'post',
+    data: data//不应该用params,那样会在url上加
+  })
+}
+
+export function updateUser(data){
+  return request({
+    url: '/user/updateUser/',
+    method: 'post',
+    data: data
+  })
+}
+
+export function changeAdmin(data){
+  return request({
+    url: '/user/changeAdmin/',
+    method: 'post',
+    data: data
+  })
+}
+
+export function addUser(data){
+  return request({
+    url: '/user/addUser/',
+    method: 'post',
+    data: data
   })
 }
