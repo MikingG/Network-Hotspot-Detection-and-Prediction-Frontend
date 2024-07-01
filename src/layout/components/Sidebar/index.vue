@@ -33,23 +33,21 @@ export default {
       isStaff: state => state.user.is_staff
     }),
     ...mapGetters([
-      'sidebar',
+      'sidebar'
     ]),
     routes() {
-      
       return this.$router.options.routes
     },
     filteredRoutes() {
       // 过滤出符合条件的路由
       return this.routes.filter(route => {
-        if(this.isStaff===true){ //isStaff前一定要加this
+        if (this.isStaff === true) { // isStaff前一定要加this
           return true
         }
         console.log(route)
-        if(route.redirect==='/dashboard'){ //要对着console.log才知道写的是什么
+        if (route.redirect === '/dashboard') { // 要对着console.log才知道写的是什么
           return false
-        }
-        else return true
+        } else return true
       })
     },
     activeMenu() {

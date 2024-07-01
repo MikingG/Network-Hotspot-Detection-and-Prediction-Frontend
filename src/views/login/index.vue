@@ -59,8 +59,8 @@
           </span>
         </el-form-item>
         <div class="button-container">
-        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-        <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="showRegister">Register</el-button></div>
+          <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+          <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="showRegister">Register</el-button></div>
       </el-form>
     </div>
   </div>
@@ -68,7 +68,6 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-
 
 export default {
   name: 'Login',
@@ -101,7 +100,7 @@ export default {
       redirect: undefined
     }
   },
-  
+
   watch: {
     $route: {
       handler: function(route) {

@@ -19,7 +19,7 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 import * as echarts from 'echarts'
-import 'echarts-wordcloud';
+import 'echarts-wordcloud'
 
 /**
  * If you don't want to use mock-server

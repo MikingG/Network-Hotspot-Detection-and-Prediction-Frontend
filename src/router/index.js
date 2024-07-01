@@ -59,7 +59,7 @@ export const constantRoutes = [{
     name: 'Dashboard',
     component: () =>
       import ('@/views/dashboard/index'),
-    meta: { title: '管理用户', icon: 'dashboard',requiresStaff:1 }
+    meta: { title: '管理用户', icon: 'dashboard', requiresStaff: 1 }
   }]
 },
 
@@ -72,7 +72,7 @@ export const constantRoutes = [{
     name: 'BasicAnalysis',
     component: () =>
       import ('@/views/basicAnalysis/index'),
-    meta: { title: '数据基本分析', icon: 'table',requiresStaff:0 }
+    meta: { title: '数据基本分析', icon: 'table', requiresStaff: 0 }
   }]
 },
 
@@ -85,7 +85,7 @@ export const constantRoutes = [{
     name: 'Crawl',
     component: () =>
       import ('@/views/crawl/index'),
-    meta: { title: '爬虫信息', icon: 'form',requiresStaff:0 }
+    meta: { title: '爬虫信息', icon: 'form', requiresStaff: 0 }
   }]
 },
 
@@ -102,18 +102,18 @@ export const constantRoutes = [{
   }]
 },
 
-{
-  path: '/profile',
-  component: Layout,
-  redirect: '/profile',
-  children: [{
-    path: 'profile',
-    name: 'Profile',
-    component: () =>
-      import ('@/views/profile/index'),
-    meta: { title: '个人信息', icon: 'el-icon-s-custom',requiresStaff:0 }
-  }]
-},
+// {
+//   path: '/profile',
+//   component: Layout,
+//   redirect: '/profile',
+//   children: [{
+//     path: 'profile',
+//     name: 'Profile',
+//     component: () =>
+//       import ('@/views/profile/index'),
+//     meta: { title: '个人信息', icon: 'el-icon-s-custom', requiresStaff: 0 }
+//   }]
+// },
 
 {
   path: '/graph',
@@ -124,7 +124,7 @@ export const constantRoutes = [{
     name: 'graph',
     component: () =>
       import ('@/views/graph/index'),
-    meta: { title: '图谱', icon: 'tree',requiresStaff:0 }
+    meta: { title: '图谱', icon: 'tree', requiresStaff: 0 }
   }]
 },
 

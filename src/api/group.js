@@ -38,7 +38,7 @@ export function getCategory() {
     url: '/user/getCategory/',
     method: 'get',
     params: {}
-  });
+  })
 }
 
 export function getWordFrequency() {
@@ -46,16 +46,15 @@ export function getWordFrequency() {
     url: '/user/getWordFrequency/',
     method: 'get',
     params: {}
-  });
+  })
 }
-
 
 export function getHotspots() {
   return request({
     url: '/user/getHotspots/',
     method: 'get',
     params: { }
-  });
+  })
 }
 
 export function postform(form) {

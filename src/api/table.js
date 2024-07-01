@@ -13,14 +13,13 @@ export function getTrendWordFrequency() {
     url: '/user/getTrendWordFrequency/',
     method: 'get',
     params: {}
-  });
+  })
 }
-
 
 export function getTrendHotspots() {
   return request({
     url: '/user/getTrendHotspots/',
     method: 'get',
     params: {}
-  });
+  })
 }
