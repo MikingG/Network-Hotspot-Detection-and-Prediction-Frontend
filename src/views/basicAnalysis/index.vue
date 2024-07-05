@@ -3,7 +3,7 @@
     <el-col :xs="24" :sm="16" :md="16" :lg="16" :xl="16">
       <el-card shadow="always">
         <div id="main" style="width: 100%; height: 500px;" />
-        <el-table :data="tableData" height="300" border style="width: 100%">
+        <el-table :data="tableData" height="300" border style="width: 100%" :row-class-name="tableRowClassName">
           <el-table-column prop="rank" label="位次" width="100" />
           <el-table-column prop="hotspot" label="热点" />
         </el-table>
@@ -239,7 +239,10 @@ export default {
       const option = {
         title: {
           text: '词云图',
-          left: 'center'
+          left: 'center',
+        },
+        tooltip: {
+          show: true
         },
         series: [{
           type: 'wordCloud',
@@ -247,24 +250,22 @@ export default {
           sizeRange: [20, 100], // 字体大小范围
           rotationRange: [-90, 90], // 字体旋转角度范围
           shape: 'circle', // 词云形状
-          textStyle: {
-            normal: {
-              color: function() {
-                // 生成随机颜色
-                return 'rgb(' + [
-                  Math.round(Math.random() * 255),
-                  Math.round(Math.random() * 255),
-                  Math.round(Math.random() * 255)
-                ].join(',') + ')'
-              }
-            }
-          },
-          data: dataset
+          data: dataset.map(item => ({ ...item, textStyle: { color: this.randomColor() }}))
         }]
       }
-
       // 使用指定的配置设置词云图表选项
       option && wordCloudChart.setOption(option)
+    },
+    randomColor() {
+      return '#' + Math.floor(Math.random() * 16777215).toString(16)
+    },
+    tableRowClassName({row, rowIndex}) {
+      if (rowIndex % 4 === 0) {
+        return 'warning-row';
+      } else if (rowIndex % 2 === 0) {
+        return 'success-row';
+      }
+      return '';
     }
   },
   data() {
@@ -275,6 +276,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+  .el-table .warning-row {
+    background: oldlace;
+  }
 
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
 </style>
