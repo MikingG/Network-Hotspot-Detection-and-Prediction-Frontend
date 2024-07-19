@@ -51,6 +51,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" size="mini" @click="addOneUser">添加用户</el-button>
+          <el-button type="primary" size="mini" @click="searchOneUser">查询用户</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -174,7 +175,20 @@ export default {
           console.error('Error adding user:', error);
             this.$message.error('添加用户失败');
         })
-      }
+      },
+        searchOneUser() {
+        //在表格的username中有无和this.formInline.username符合的
+        if (this.formInline.username) {
+          this.tableData = this.tableData.filter(item => item.username === this.formInline.username);
+          if  (this.tableData.length > 0) {
+            this.$message.success('已找到用户,查询用户名为空则刷新用户列表');
+          } else {
+            this.$message.error('未找到用户,查询用户名为空则刷新用户列表');
+          }
+        } else {
+          this.fetchAllUsers(); // 如果没有输入用户名，则重新获取所有用户
+        }
+      },
     },
     mounted() {
         this.fetchAllUsers();
